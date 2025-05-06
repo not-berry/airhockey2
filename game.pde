@@ -93,21 +93,34 @@ void game() {
   
   
   //moving
-  puckx +=vx;
+  vx *= 0.995;
+  vy *= 0.995;
+  puckx += vx;
   pucky += vy;
   
   //player moving
-  if(aKey) x -= 2;
-  if(dKey) x += 2;
-  if(wKey) y -= 2;
-  if(sKey) y += 2;
+  if(aKey) x -= speeda;
+  if(dKey) x += speeda;
+  if(wKey) y -= speeda;
+  if(sKey) y += speeda;
   
-  if(aKey2) x2 -= 2;
-  if(dKey2) x2 += 2;
-  if(wKey2) y2 -= 2;
-  if(sKey2) y2 += 2;
+  if(aKey2) x2 -= speedb;
+  if(dKey2) x2 += speedb;
+  if(wKey2) y2 -= speedb;
+  if(sKey2) y2 += speedb;
   
   
+  //if(aKey && speeda < 2 || dKey && speeda < 2 || wKey && speeda < 2 || sKey && speeda < 3) {
+  //  speeda = 2;
+  //} else {
+  //  speeda = 0.01;
+  //}
+  
+  //if(aKey2 && speedb < 2 || dKey2 && speedb < 2 || wKey2 && speedb < 2 || sKey2 && speedb < 3) {
+  //  speedb = 2;
+  //} else {
+  //  speedb = 0.01;
+  //}
   
   
   //bouncing
@@ -130,13 +143,13 @@ void game() {
   
   if(dist(x,y, puckx,pucky) <= 75) {
     //vx = vy = 0;
-    vx = (puckx - x)/20;
-    vy = (pucky - y)/20;
+    vx = (puckx - x)/10;
+    vy = (pucky - y)/10;
   }
   if(dist(x2,y2, puckx,pucky) <= 75) {
     //vx = vy = 0;
-    vx = (puckx - x2)/20;
-    vy = (pucky - y2)/20;
+    vx = (puckx - x2)/10;
+    vy = (pucky - y2)/10;
   }
   
   

@@ -21,6 +21,8 @@ float puckx, pucky;
 float x,y, x2,y2;
 float vx, vy; //target velocity
 int scorea, scoreb;
+float speeda, speedb;
+float speedcapa, speedcapb;
 
 //KEY VARIABLES
 boolean aKey, dKey, wKey, sKey;
@@ -58,6 +60,8 @@ void setup() {
   vy = 0;
   scorea = 0;
   scoreb = 0;
+  speeda = speedb = 3;
+  speedcapa = speedcapb = 3;
   
   //minim
   //mimin = new Minim(this);
