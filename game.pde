@@ -93,21 +93,28 @@ void game() {
   
   
   //moving
-  vx *= 0.995;
-  vy *= 0.995;
+  //vx *= 0.995;
+  //vy *= 0.995;
   puckx += vx;
   pucky += vy;
   
   //player moving
-  if(aKey) x -= speeda;
-  if(dKey) x += speeda;
-  if(wKey) y -= speeda;
-  if(sKey) y += speeda;
   
-  if(aKey2) x2 -= speedb;
-  if(dKey2) x2 += speedb;
-  if(wKey2) y2 -= speedb;
-  if(sKey2) y2 += speedb;
+  if(aKey && wKey || aKey && sKey || dKey && wKey || dKey && sKey) div1 = 1.3;
+  else div1 = 1;
+  
+  if(aKey2 && wKey2 || aKey2 && sKey2 || dKey2 && wKey2 || dKey2 && sKey2) div2 = 1.3;
+  else div2 = 1;
+  
+  if(aKey) x -= speeda/div1;
+  if(dKey) x += speeda/div1;
+  if(wKey) y -= speeda/div1;
+  if(sKey) y += speeda/div1;
+  
+  if(aKey2) x2 -= speedb/div2;
+  if(dKey2) x2 += speedb/div2;
+  if(wKey2) y2 -= speedb/div2;
+  if(sKey2) y2 += speedb/div2;
   
   
   //if(aKey && speeda < 2 || dKey && speeda < 2 || wKey && speeda < 2 || sKey && speeda < 3) {

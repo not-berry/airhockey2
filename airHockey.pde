@@ -23,6 +23,8 @@ float vx, vy; //target velocity
 int scorea, scoreb;
 float speeda, speedb;
 float speedcapa, speedcapb;
+float div1 = 1;
+float div2 = 1;
 
 //KEY VARIABLES
 boolean aKey, dKey, wKey, sKey;
@@ -46,6 +48,7 @@ void setup() {
   frameRate(180);
   
   //textAlign(CENTER, CENTER);
+  textAlign(CENTER, CENTER);
    
   mode = INTRO;
   
@@ -60,8 +63,8 @@ void setup() {
   vy = 0;
   scorea = 0;
   scoreb = 0;
-  speeda = speedb = 3;
-  speedcapa = speedcapb = 3;
+  speeda = speedb = 5;
+  speedcapa = speedcapb = 5;
   
   //minim
   //mimin = new Minim(this);
