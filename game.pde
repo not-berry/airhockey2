@@ -1,7 +1,18 @@
 void game() {
   background(blueblue);
   
-  if(puckx >= width-140 && pucky >= 200 && pucky <= height-200) {
+  clockstop -= 1;
+  
+  if(puckx >= width-140 && clockstop < 0) {
+    clockstop = 250;
+    scorea += 1;
+  }
+  if(puckx <= 140 && clockstop < 0) {
+    clockstop = 250;
+    scoreb += 1;
+  }
+  
+  if(clockstop == 0 && puckx >= width-140) {
     vx = vy = 0;
     puckx = width/2 + 100;
     pucky = height/2;
@@ -9,10 +20,9 @@ void game() {
     y = height/2;
     x2 = width - 300;
     y2 = height/2;
-    scorea += 1;
     if(scorea == 3) mode = GAMEOVER;
   }
-  if(puckx <= 140 && pucky >= 200 && pucky <= height-200) {
+  if(clockstop == 0 && puckx <= 140) {
     vx = vy = 0;
     puckx = width/2 - 100;
     pucky = height/2;
@@ -20,19 +30,19 @@ void game() {
     y = height/2;
     x2 = width - 300;
     y2 = height/2;
-    scoreb += 1;
     if(scoreb == 3) mode = GAMEOVER;
   }
   
   //Arena Bottom
-  bold(20,red);
-  circle(300,height/2, 500);
-  bold(20,blue);
-  circle(width-300,height/2, 500);
   bold(20,white);
   rect(100,50, width-200,height-100);
   stroke(redred);
   line(width/2,55, width/2,height-55);
+  strokeWeight(0);
+  fill(red);
+  rect(100,50, 73,height-100);
+  fill(blue);
+  rect(width-100,50, -73,height-100);
   
   //puck
   stroke(black, 80);
@@ -81,53 +91,38 @@ void game() {
   fill(blue);
   text(scoreb, width/2 + 25,28);
   
-  //exit
-  strokeWeight(0);
-  fill(white);
-  stroke(white);
-  circle(width/2,height, 150);
-  titletext(50);
-  text("EXIT", width/2,height-30);
   
   
   
   
   //moving
-  //vx *= 0.995;
-  //vy *= 0.995;
-  puckx += vx;
-  pucky += vy;
+  vx *= 0.996;
+  vy *= 0.996;
+  if(clockstop < 0) puckx += vx;
+  if(clockstop < 0) pucky += vy;
   
   //player moving
   
-  if(aKey && wKey || aKey && sKey || dKey && wKey || dKey && sKey) div1 = 1.3;
+  if(aKey && wKey || aKey && sKey || dKey && wKey || dKey && sKey) div1 = 1.4;
   else div1 = 1;
   
-  if(aKey2 && wKey2 || aKey2 && sKey2 || dKey2 && wKey2 || dKey2 && sKey2) div2 = 1.3;
+  if(aKey2 && wKey2 || aKey2 && sKey2 || dKey2 && wKey2 || dKey2 && sKey2) div2 = 1.4;
   else div2 = 1;
   
-  if(aKey) x -= speeda/div1;
-  if(dKey) x += speeda/div1;
-  if(wKey) y -= speeda/div1;
-  if(sKey) y += speeda/div1;
+  prevxa = x;
+  prevya = y;
+  prevxb = x2;
+  prevyb = y2;
   
-  if(aKey2) x2 -= speedb/div2;
-  if(dKey2) x2 += speedb/div2;
-  if(wKey2) y2 -= speedb/div2;
-  if(sKey2) y2 += speedb/div2;
+  if(aKey && clockstop < 0) x -= speeda/div1;
+  if(dKey && clockstop < 0) x += speeda/div1;
+  if(wKey && clockstop < 0) y -= speeda/div1;
+  if(sKey && clockstop < 0) y += speeda/div1;
   
-  
-  //if(aKey && speeda < 2 || dKey && speeda < 2 || wKey && speeda < 2 || sKey && speeda < 3) {
-  //  speeda = 2;
-  //} else {
-  //  speeda = 0.01;
-  //}
-  
-  //if(aKey2 && speedb < 2 || dKey2 && speedb < 2 || wKey2 && speedb < 2 || sKey2 && speedb < 3) {
-  //  speedb = 2;
-  //} else {
-  //  speedb = 0.01;
-  //}
+  if(aKey2 && clockstop < 0) x2 -= speedb/div2;
+  if(dKey2 && clockstop < 0) x2 += speedb/div2;
+  if(wKey2 && clockstop < 0) y2 -= speedb/div2;
+  if(sKey2 && clockstop < 0) y2 += speedb/div2;
   
   
   //bouncing
@@ -148,15 +143,13 @@ void game() {
     pucky = height-90;
   }
   
-  if(dist(x,y, puckx,pucky) <= 75) {
-    //vx = vy = 0;
-    vx = (puckx - x)/10;
-    vy = (pucky - y)/10;
+  if(dist(x,y, puckx,pucky) <= 90) {
+    vx = (puckx - x)*(dist(x,y, prevxa,prevya)/50+0.02);
+    vy = (pucky - y)*(dist(x,y, prevxa,prevya)/50+0.02);
   }
-  if(dist(x2,y2, puckx,pucky) <= 75) {
-    //vx = vy = 0;
-    vx = (puckx - x2)/10;
-    vy = (pucky - y2)/10;
+  if(dist(x2,y2, puckx,pucky) <= 90) {
+    vx = (puckx - x2)*(dist(x2,y2, prevxb,prevyb)/50+0.02);
+    vy = (pucky - y2)*(dist(x2,y2, prevxb,prevyb)/50+0.02);
   }
   
   
@@ -171,13 +164,27 @@ void game() {
   if(y2 <= 115) y2 = 115;
   if(y2 >= height-115) y2 = height-115;
   
-  //stroke(red);
-  //strokeWeight(15);
-  //circle(140,200, 50);
+  
+  //exit
+  strokeWeight(10);
+  stroke(grey);
+  fill(grey, 50);
+  if(dist(mouseX,mouseY, width/2,height) < 75 && isheld) held += 2;
+  arc(width/2,height, 250,250, radians(180),radians(held));
+  if(held == 360) exit();
+  
+
+  strokeWeight(0);
+  fill(white);
+  stroke(white);
+  circle(width/2,height, 150);
+  titletext(50);
+  text("EXIT", width/2,height-30);
 }
 
 void gameClicks() {
-    
+    isheld = false;
+    held = 180;
 }
 
 void keyPressed() {
@@ -202,4 +209,8 @@ void keyReleased() {
   if(keyCode == RIGHT) dKey2 = false;
   if(keyCode == UP) wKey2 = false;
   if(keyCode == DOWN) sKey2 = false;
+}
+
+void mousePressed() {
+  isheld = true;
 }

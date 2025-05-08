@@ -21,6 +21,7 @@ void gameover() {
 
 void gameoverClicks() {
   if (mouseX > width/2 - 200 && mouseX < width/2 + 200 && mouseY > height/2+150 && mouseY < height/2+250) {
+    isheld = false;
     mode = GAME;
     scorea = scoreb = 0;
     puckx = width/2 - 100;

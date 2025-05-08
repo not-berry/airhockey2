@@ -1,10 +1,3 @@
-import ddf.minim.*;
-import ddf.minim.analysis.*;
-import ddf.minim.effects.*;
-import ddf.minim.signals.*;
-import ddf.minim.spi.*;
-import ddf.minim.ugens.*;
-
 //Christopher Bennett
 //Block 2-3
 //April 27, 2025
@@ -25,14 +18,15 @@ float speeda, speedb;
 float speedcapa, speedcapb;
 float div1 = 1;
 float div2 = 1;
+float prevxa = 0, prevya = 0;
+float prevxb = 0, prevyb = 0;
+float clockstop = -1;
+float held = 180;
+boolean isheld;
 
 //KEY VARIABLES
 boolean aKey, dKey, wKey, sKey;
 boolean aKey2, dKey2, wKey2, sKey2;
-
-//sound variables
-Minim minim;
-AudioPlayer theme, coin, bump, gameover;
 
 //COLOUR PALLETTE
 color black = 0;
@@ -66,12 +60,6 @@ void setup() {
   speeda = speedb = 5;
   speedcapa = speedcapb = 5;
   
-  //minim
-  //mimin = new Minim(this);
-  //theme = minim.loadFile("mario bros theme.mp3");
-  //coin  = minim.loadFile("coin.wav");
-  //bump  = minim.loadFile("bump.wav");
-  //gameover = minim.loadFile("gameover.wav");
   
   //puck side
   if(int(random(2)) == 0) puckx += 200;

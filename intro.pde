@@ -42,6 +42,8 @@ void intro() {
 
 void introClicks() {
   if (mouseX > width/2 - 100 && mouseX < width/2 + 100 && mouseY > height/2+50 && mouseY < height/2+150) {
+    isheld = false;
     mode = GAME;
+    //exit();
   }
 }
