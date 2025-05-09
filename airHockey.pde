@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 //Christopher Bennett
 //Block 2-3
 //April 27, 2025
@@ -37,7 +39,11 @@ color blue = #559DD2;
 color redred = #D64343;
 color blueblue = #172d44;
 
+//sound
+//SoundFile fail;
+
 void setup() {
+  //fail = new SoundFile(this, "FAILURE.wav");
   size(1200,600);
   frameRate(180);
   

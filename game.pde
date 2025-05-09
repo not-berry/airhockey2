@@ -20,7 +20,7 @@ void game() {
     y = height/2;
     x2 = width - 300;
     y2 = height/2;
-    if(scorea == 3) mode = GAMEOVER;
+    if(scorea == 7) mode = GAMEOVER;
   }
   if(clockstop == 0 && puckx <= 140) {
     vx = vy = 0;
@@ -30,7 +30,7 @@ void game() {
     y = height/2;
     x2 = width - 300;
     y2 = height/2;
-    if(scoreb == 3) mode = GAMEOVER;
+    if(scoreb == 7) mode = GAMEOVER;
   }
   
   //Arena Bottom
