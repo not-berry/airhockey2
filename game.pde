@@ -16,8 +16,8 @@ void game() {
     vx = vy = 0;
     puckx = width/2 + 100;
     pucky = height/2;
-    x = 300;
-    y = height/2;
+    x1 = 300;
+    y1 = height/2;
     x2 = width - 300;
     y2 = height/2;
     if(scorea == 7) mode = GAMEOVER;
@@ -26,8 +26,8 @@ void game() {
     vx = vy = 0;
     puckx = width/2 - 100;
     pucky = height/2;
-    x = 300;
-    y = height/2;
+    x1 = 300;
+    y1 = height/2;
     x2 = width - 300;
     y2 = height/2;
     if(scoreb == 7) mode = GAMEOVER;
@@ -52,7 +52,7 @@ void game() {
   
   //player1
   pushMatrix();
-  translate(x,y);
+  translate(x1,y1);
   stroke(black, 80);
   circle(0,7,100);
   bold(15,red);
@@ -109,15 +109,15 @@ void game() {
   if(aKey2 && wKey2 || aKey2 && sKey2 || dKey2 && wKey2 || dKey2 && sKey2) div2 = 1.4;
   else div2 = 1;
   
-  prevxa = x;
-  prevya = y;
+  prevxa = x1;
+  prevya = y1;
   prevxb = x2;
   prevyb = y2;
   
-  if(aKey && clockstop < 0) x -= speeda/div1;
-  if(dKey && clockstop < 0) x += speeda/div1;
-  if(wKey && clockstop < 0) y -= speeda/div1;
-  if(sKey && clockstop < 0) y += speeda/div1;
+  if(aKey && clockstop < 0) x1 -= speeda/div1;
+  if(dKey && clockstop < 0) x1 += speeda/div1;
+  if(wKey && clockstop < 0) y1 -= speeda/div1;
+  if(sKey && clockstop < 0) y1 += speeda/div1;
   
   if(aKey2 && clockstop < 0) x2 -= speedb/div2;
   if(dKey2 && clockstop < 0) x2 += speedb/div2;
@@ -143,21 +143,29 @@ void game() {
     pucky = height-90;
   }
   
-  if(dist(x,y, puckx,pucky) <= 90) {
-    vx = (puckx - x)*(dist(x,y, prevxa,prevya)/50+0.02);
-    vy = (pucky - y)*(dist(x,y, prevxa,prevya)/50+0.02);
+  if(dist(x1,y1, puckx,pucky) <= 90) {
+    vx = (puckx - x1)*(dist(x1,y1, prevxa,prevya)/50+0.02);
+    vy = (pucky - y1)*(dist(x1,y1, prevxa,prevya)/50+0.02);
+    if(dist(x1,y1, prevxa,prevya) > 0) {
+      playerHit[0] = new hit();
+      showthehit = true;
+    }
   }
   if(dist(x2,y2, puckx,pucky) <= 90) {
     vx = (puckx - x2)*(dist(x2,y2, prevxb,prevyb)/50+0.02);
     vy = (pucky - y2)*(dist(x2,y2, prevxb,prevyb)/50+0.02);
+    if(dist(x2,y2, prevxb,prevyb) > 0) {
+      playerHit[0] = new hit();
+      showthehit = true;
+    }
   }
   
   
   
-  if(x <= 165) x = 165;
-  if(x >= width/2-60) x = width/2-60;
-  if(y <= 115) y = 115;
-  if(y >= height-115) y = height-115;
+  if(x1 <= 165) x1 = 165;
+  if(x1 >= width/2-60) x1 = width/2-60;
+  if(y1 <= 115) y1 = 115;
+  if(y1 >= height-115) y1 = height-115;
   
   if(x2 <= width/2+60) x2 = width/2+60;
   if(x2 >= width-165) x2 = width-165;
@@ -180,6 +188,12 @@ void game() {
   circle(width/2,height, 150);
   titletext(50);
   text("EXIT", width/2,height-30);
+  
+  
+  
+  if(showthehit) {
+    playerHit[0].act();
+  }
 }
 
 void gameClicks() {

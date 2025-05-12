@@ -1,13 +1,13 @@
 void gameover() {
-  if(scorea == 3) background(red);
-  if(scoreb == 3) background(blue);
+  if(scorea == 7) background(red);
+  if(scoreb == 7) background(blue);
   
   //who wins
   titletext(100);
   text("GAME OVER", width/2,height/2-40);
   titletext(70);
-  if(scorea == 3) text("red wins", width/2,height/2+30);
-  if(scoreb == 3) text("blue wins", width/2,height/2+30);
+  if(scorea == 7) text("red wins", width/2,height/2+30);
+  if(scoreb == 7) text("blue wins", width/2,height/2+30);
   
   //play button 
   pushMatrix();

@@ -13,7 +13,7 @@ final int GAMEOVER = 3;
 
 //TARGET VARIABLES
 float puckx, pucky;
-float x,y, x2,y2;
+float x1,y1, x2,y2;
 float vx, vy; //target velocity
 int scorea, scoreb;
 float speeda, speedb;
@@ -25,6 +25,7 @@ float prevxb = 0, prevyb = 0;
 float clockstop = -1;
 float held = 180;
 boolean isheld;
+boolean showthehit = false;
 
 //KEY VARIABLES
 boolean aKey, dKey, wKey, sKey;
@@ -42,6 +43,10 @@ color blueblue = #172d44;
 //sound
 //SoundFile fail;
 
+//class call
+hit[] playerHit;
+int numhits = 0;
+
 void setup() {
   //fail = new SoundFile(this, "FAILURE.wav");
   size(1200,600);
@@ -52,11 +57,17 @@ void setup() {
    
   mode = INTRO;
   
+  numhits = 50;
+  playerHit = new hit[1]; //constructor
+  //for(int i = 0; i < numhits; i++) {
+  //  playerHit[i] = new hit();
+  //}
+  
   //target initialization
   puckx = width/2 - 100;
   pucky = height/2;
-  x = 300;
-  y = height/2;
+  x1 = 300;
+  y1 = height/2;
   x2 = width - 300;
   y2 = height/2;
   vx = 0;
