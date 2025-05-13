@@ -41,14 +41,14 @@ color redred = #D64343;
 color blueblue = #172d44;
 
 //sound
-//SoundFile fail;
+SoundFile hitshot;
 
 //class call
 hit[] playerHit;
 int numhits = 0;
 
 void setup() {
-  //fail = new SoundFile(this, "FAILURE.wav");
+  hitshot = new SoundFile(this, "hitshot.mp3");
   size(1200,600);
   frameRate(180);
   

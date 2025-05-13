@@ -144,6 +144,9 @@ void game() {
   }
   
   if(dist(x1,y1, puckx,pucky) <= 90) {
+    hitshot.stop();
+    hitshot.play();
+    //hitshot.jump(hitshot.duration(1));
     vx = (puckx - x1)*(dist(x1,y1, prevxa,prevya)/50+0.02);
     vy = (pucky - y1)*(dist(x1,y1, prevxa,prevya)/50+0.02);
     if(dist(x1,y1, prevxa,prevya) > 0) {
@@ -199,13 +202,14 @@ void game() {
 void gameClicks() {
     isheld = false;
     held = 180;
+    if(dist(mouseX,mouseY, width/2,height) >= 75) mode = PAUSE;
 }
 
 void keyPressed() {
-  if(key == 'a') aKey = true;
-  if(key == 'd') dKey = true;
-  if(key == 'w') wKey = true;
-  if(key == 's') sKey = true;
+  if(key == 'a' || key == 'A') aKey = true;
+  if(key == 'd' || key == 'D') dKey = true;
+  if(key == 'w' || key == 'W') wKey = true;
+  if(key == 's' || key == 'S') sKey = true;
     
   if(keyCode == LEFT) aKey2 = true;
   if(keyCode == RIGHT) dKey2 = true;
@@ -214,10 +218,10 @@ void keyPressed() {
 }
   
 void keyReleased() {
-  if(key == 'a') aKey = false;
-  if(key == 'd') dKey = false;
-  if(key == 'w') wKey = false;
-  if(key == 's') sKey = false;
+  if(key == 'a' || key == 'A') aKey = false;
+  if(key == 'd' || key == 'D') dKey = false;
+  if(key == 'w' || key == 'W') wKey = false;
+  if(key == 's' || key == 'S') sKey = false;
     
   if(keyCode == LEFT) aKey2 = false;
   if(keyCode == RIGHT) dKey2 = false;

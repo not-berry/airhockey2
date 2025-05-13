@@ -13,6 +13,7 @@ void intro() {
   pushMatrix();
   translate(width/2,height/2+50);
   bold(20,white);
+  if (mouseX > width/2 - 110 && mouseX < width/2 + 110 && mouseY > height/2+40 && mouseY < height/2+160) fill(200);
   rect(-100,0, 200,100);
   titletext(70);
   text("PLAY", 0,50);
@@ -38,10 +39,11 @@ void intro() {
   circle(0,0,100);
   circle(0,0,40);
   popMatrix();
+  
 }
 
 void introClicks() {
-  if (mouseX > width/2 - 100 && mouseX < width/2 + 100 && mouseY > height/2+50 && mouseY < height/2+150) {
+  if (mouseX > width/2 - 110 && mouseX < width/2 + 110 && mouseY > height/2+40 && mouseY < height/2+160) {
     isheld = false;
     mode = GAME;
     //exit();

@@ -13,6 +13,7 @@ void gameover() {
   pushMatrix();
   translate(width/2,height/2+150);
   bold(20,white);
+  if (mouseX > width/2 - 210 && mouseX < width/2 + 210 && mouseY > height/2+140 && mouseY < height/2+260) fill(200);
   rect(-200,0, 400,100);
   titletext(70);
   text("PLAY AGAIN", 0,50);
@@ -20,7 +21,7 @@ void gameover() {
 }
 
 void gameoverClicks() {
-  if (mouseX > width/2 - 200 && mouseX < width/2 + 200 && mouseY > height/2+150 && mouseY < height/2+250) {
+  if (mouseX > width/2 - 210 && mouseX < width/2 + 210 && mouseY > height/2+140 && mouseY < height/2+260) {
     isheld = false;
     mode = GAME;
     scorea = scoreb = 0;
