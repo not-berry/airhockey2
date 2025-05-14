@@ -10,6 +10,7 @@ final int INTRO = 0;
 final int GAME = 1;
 final int PAUSE = 2;
 final int GAMEOVER = 3;
+final int OPTIONS = 4;
 
 //TARGET VARIABLES
 float puckx, pucky;
@@ -42,13 +43,15 @@ color blueblue = #172d44;
 
 //sound
 SoundFile hitshot;
+SoundFile hitboard;
 
 //class call
 hit[] playerHit;
 int numhits = 0;
 
 void setup() {
-  hitshot = new SoundFile(this, "hitshot.mp3");
+  hitshot = new SoundFile(this, "mixkit-arrow-shot-through-air-2771.wav");
+  hitboard = new SoundFile(this, "mixkit-game-gun-shot-1662-[AudioTrimmer.com].mp3");
   size(1200,600);
   frameRate(180);
   
@@ -91,6 +94,8 @@ void draw() {
     pause();
   } else if(mode == GAMEOVER) {
     gameover();
+  } else if(mode == OPTIONS) {
+    options();
   } else {
     println("Error: Mode = " + mode);
   } 

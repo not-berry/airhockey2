@@ -127,29 +127,40 @@ void game() {
   
   //bouncing
   if (puckx < 140) {
+    hitboard.stop();
+    hitshot.stop();
+    hitboard.play();
     vx *= -1;
     puckx = 140;
   }
   if (puckx > width-140) {
+    hitboard.stop();
+    hitshot.stop();
+    hitboard.play();
     vx *= -1;
     puckx = width-140;
   }
   if (pucky < 90) {
+    hitboard.stop();
+    hitshot.stop();
+    hitboard.play();
     vy *= -1;
     pucky = 90;
   }
   if (pucky > height-90) {
+    hitboard.stop();
+    hitshot.stop();
+    hitboard.play();
     vy *= -1;
     pucky = height-90;
   }
   
   if(dist(x1,y1, puckx,pucky) <= 90) {
-    hitshot.stop();
-    hitshot.play();
-    //hitshot.jump(hitshot.duration(1));
     vx = (puckx - x1)*(dist(x1,y1, prevxa,prevya)/50+0.02);
     vy = (pucky - y1)*(dist(x1,y1, prevxa,prevya)/50+0.02);
     if(dist(x1,y1, prevxa,prevya) > 0) {
+      hitshot.stop();
+      hitshot.play();
       playerHit[0] = new hit();
       showthehit = true;
     }
@@ -158,6 +169,10 @@ void game() {
     vx = (puckx - x2)*(dist(x2,y2, prevxb,prevyb)/50+0.02);
     vy = (pucky - y2)*(dist(x2,y2, prevxb,prevyb)/50+0.02);
     if(dist(x2,y2, prevxb,prevyb) > 0) {
+      hitshot.stop();
+      hitboard.stop();
+      hitboard.stop();
+      hitshot.play();
       playerHit[0] = new hit();
       showthehit = true;
     }
@@ -182,7 +197,20 @@ void game() {
   fill(grey, 50);
   if(dist(mouseX,mouseY, width/2,height) < 75 && isheld) held += 2;
   arc(width/2,height, 250,250, radians(180),radians(held));
-  if(held == 360) exit();
+  if(held == 360) {
+    isheld = false;
+    held = 180;
+    vx = vy = 0;
+    scorea = scoreb = 0;
+    pucky = height/2;
+    puckx = width/2 - 100;
+    if(int(random(2)) == 0) puckx += 200;
+    x1 = 300;
+    y1 = height/2;
+    x2 = width - 300;
+    y2 = height/2;
+    mode = INTRO;
+  }
   
 
   strokeWeight(0);
