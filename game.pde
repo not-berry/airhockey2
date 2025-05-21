@@ -197,7 +197,28 @@ void game() {
   fill(grey, 50);
   if(dist(mouseX,mouseY, width/2,height) < 75 && isheld) held += 2;
   arc(width/2,height, 250,250, radians(180),radians(held));
-  if(held == 360) {
+  strokeWeight(0);
+  fill(white);
+  stroke(white);
+  circle(width/2,height, 150);
+  titletext(50);
+  text("EXIT", width/2,height-30);
+  
+  
+  
+  if(showthehit) {
+    playerHit[0].act();
+  }
+  if(held >= 360) held = 360;
+}
+
+void gameClicks() {
+  isheld = false;
+  if(dist(mouseX,mouseY, width/2,height) >= 75) {
+    held = 180;
+    mode = PAUSE;
+  }
+  if(held == 360 && dist(mouseX,mouseY, width/2,height) < 75) {
     isheld = false;
     held = 180;
     vx = vy = 0;
@@ -211,26 +232,7 @@ void game() {
     y2 = height/2;
     mode = INTRO;
   }
-  
-
-  strokeWeight(0);
-  fill(white);
-  stroke(white);
-  circle(width/2,height, 150);
-  titletext(50);
-  text("EXIT", width/2,height-30);
-  
-  
-  
-  if(showthehit) {
-    playerHit[0].act();
-  }
-}
-
-void gameClicks() {
-    isheld = false;
-    held = 180;
-    if(dist(mouseX,mouseY, width/2,height) >= 75) mode = PAUSE;
+  held = 180;
 }
 
 void keyPressed() {
