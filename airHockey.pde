@@ -41,6 +41,11 @@ color blue = #559DD2;
 color redred = #D64343;
 color blueblue = #172d44;
 
+//colour arrays
+int[] colourX;
+int[] colourY;
+color[] colour;
+
 //sound
 SoundFile hitshot;
 SoundFile hitboard;
@@ -81,6 +86,27 @@ void setup() {
   scoreb = 0;
   speeda = speedb = 5;
   speedcapa = speedcapb = 5;
+  
+  colorMode(HSB);
+  
+  //array cast
+  for(int i = 0; i < 11; i++) {
+    colourX = new int[i];
+    colourY = new int[i];
+    colour = new color[i];
+  }
+  
+  for(int i = 0; i < 10; i++) {
+    colour[i] = color(i*50, 100,250);
+    colourX[i] = i*120;
+    if(i < 5) colourY[i] = 0;
+    if(i >= 5) {
+      colourY[i] = 120;
+      colourX[i] -= 600;
+      colour[i] = color((i-5)*50, 100,250);
+    }
+    println(colour[i]);
+  }
   
   //grug.amp(0.5);
   grug.play();
