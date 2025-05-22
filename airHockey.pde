@@ -44,6 +44,7 @@ color blueblue = #172d44;
 //sound
 SoundFile hitshot;
 SoundFile hitboard;
+SoundFile grug;
 
 //class call
 hit[] playerHit;
@@ -52,6 +53,7 @@ int numhits = 0;
 void setup() {
   hitshot = new SoundFile(this, "mixkit-arrow-shot-through-air-2771.wav");
   hitboard = new SoundFile(this, "mixkit-game-gun-shot-1662-[AudioTrimmer.com].mp3");
+  grug = new SoundFile(this, "grug-[AudioTrimmer.com].mp3");
   size(1200,600);
   frameRate(180);
   
@@ -79,6 +81,9 @@ void setup() {
   scoreb = 0;
   speeda = speedb = 5;
   speedcapa = speedcapb = 5;
+  
+  //grug.amp(0.5);
+  grug.play();
   
   
   //puck side
