@@ -1,7 +1,8 @@
 void intro() {
   background(blue);
   fill(red);
-  strokeWeight(0);
+  fill(red);
+  noStroke();
   rect(0,0, 600,600);
   
   

@@ -1,7 +1,7 @@
 void options() {
   background(blue);
   fill(red);
-  strokeWeight(0);
+  noStroke();
   rect(0,0, 600,600);
   
   //play button 
@@ -17,14 +17,17 @@ void options() {
   line(-20,33, -30,28);
   popMatrix();
   
-  
   stroke(black);
+  fill(black);
+  textSize(30);
+  text("player 2", width-60,25);
+  text("player 1", width-170,25);
   pushMatrix();
-  translate(60,60);
+  translate(width-170,100);
   for(int i = 0; i < 10; i++) {
     fill(colour[i]);
     stroke(black);
-    if(dist(colourX[i]+60,colourY[i]+60, mouseX,mouseY) < 55) stroke(white);
+    if(dist(colourX[i]+width-170,colourY[i]+100, mouseX,mouseY) < 55 || red == colour[i] && i < 5|| blue == colour[i] && i >= 5) stroke(white);
     circle(colourX[i],colourY[i], 100);
   }
   popMatrix();
@@ -33,6 +36,7 @@ void options() {
 void optionsClicks() {
   if (mouseX > 5 && mouseX < 115 && mouseY > height-65 && mouseY < height-5) mode = INTRO;
   for(int i = 0; i < 10; i++) {
-    //if(dist(colourX[i],colourY[i], mouseX,mouseY) < 55)
+    if(dist(colourX[i]+width-170,colourY[i]+100, mouseX,mouseY) < 55 && i < 5) red = colour[i];
+    if(dist(colourX[i]+width-170,colourY[i]+100, mouseX,mouseY) < 55 && i >= 5) blue = colour[i];
   }
 }

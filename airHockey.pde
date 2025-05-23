@@ -88,6 +88,8 @@ void setup() {
   speedcapa = speedcapb = 5;
   
   colorMode(HSB);
+  red = color(0, 150,300);
+  blue = color(150, 150,300);
   
   //array cast
   for(int i = 0; i < 11; i++) {
@@ -97,13 +99,13 @@ void setup() {
   }
   
   for(int i = 0; i < 10; i++) {
-    colour[i] = color(i*50, 100,250);
-    colourX[i] = i*120;
-    if(i < 5) colourY[i] = 0;
+    colour[i] = color(i*50, 150,300);
+    colourY[i] = i*110;
+    if(i < 5) colourX[i] = 0;
     if(i >= 5) {
-      colourY[i] = 120;
-      colourX[i] -= 600;
-      colour[i] = color((i-5)*50, 100,250);
+      colourX[i] = 110;
+      colourY[i] -= 550;
+      colour[i] = color((i-5)*50, 150,300);
     }
     println(colour[i]);
   }
