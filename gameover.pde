@@ -29,3 +29,7 @@ void gameoverClicks() {
     if(int(random(2)) == 0) puckx += 200;
   }
 }
+
+void gameoverPressed() {
+  
+}

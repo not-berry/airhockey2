@@ -7,3 +7,7 @@ void pauseClicks() {
   isheld = false;
   mode = GAME;
 }
+
+void pausePressed() {
+  
+}

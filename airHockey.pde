@@ -27,6 +27,13 @@ float clockstop = -1;
 float held = 180;
 boolean isheld;
 boolean showthehit = false;
+float ps = 1;
+float d = 100;
+float sliderX1 = 400;
+boolean change1 = false;
+float speed = 0.8;
+float sliderX2 = 235;
+boolean change2 = false;
 
 //KEY VARIABLES
 boolean aKey, dKey, wKey, sKey;
@@ -107,11 +114,9 @@ void setup() {
       colourY[i] -= 550;
       colour[i] = color((i-5)*50, 150,300);
     }
-    println(colour[i]);
   }
   
-  //grug.amp(0.5);
-  grug.play();
+  //grug.play();
   
   
   //puck side

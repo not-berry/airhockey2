@@ -11,3 +11,17 @@ void mouseReleased() {
     optionsClicks();
   }
 }
+
+void mousePressed() {
+  if(mode == INTRO) {
+    introPressed();
+  } else if(mode == GAME) {
+    gamePressed();
+  } else if(mode == PAUSE) {
+    pausePressed();
+  } else if(mode == GAMEOVER) {
+    gameoverPressed();
+  } else if(mode == OPTIONS) {
+    optionsPressed();
+  }
+}

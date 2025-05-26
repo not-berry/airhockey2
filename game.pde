@@ -53,21 +53,23 @@ void game() {
   //player1
   pushMatrix();
   translate(x1,y1);
+  scale(ps);
   stroke(black, 80);
-  circle(0,7,100);
+  circle(0,7,d);
   bold(15,red);
-  circle(0,0,100);
-  circle(0,0,40);
+  circle(0,0,d);
+  circle(0,0,d*0.4);
   popMatrix();
   
   //player2
   pushMatrix();
   translate(x2,y2);
+  scale(ps);
   stroke(black, 80);
-  circle(0,7,100);
+  circle(0,7,d);
   bold(15,blue);
-  circle(0,0,100);
-  circle(0,0,40);
+  circle(0,0,d);
+  circle(0,0,d*0.4);
   popMatrix();
   
   //Arena Top
@@ -155,9 +157,9 @@ void game() {
     pucky = height-90;
   }
   
-  if(dist(x1,y1, puckx,pucky) <= 90) {
-    vx = (puckx - x1)*(dist(x1,y1, prevxa,prevya)/50+0.02);
-    vy = (pucky - y1)*(dist(x1,y1, prevxa,prevya)/50+0.02);
+  if(dist(x1,y1, puckx,pucky) <= ps*60+30) {
+    vx = (puckx - x1)*(dist(x1,y1, prevxa,prevya)/(50*ps/speed)+0.02*speed);
+    vy = (pucky - y1)*(dist(x1,y1, prevxa,prevya)/(50*ps/speed)+0.02*speed);
     if(dist(x1,y1, prevxa,prevya) > 0) {
       hitshot.stop();
       hitshot.play();
@@ -165,9 +167,9 @@ void game() {
       showthehit = true;
     }
   }
-  if(dist(x2,y2, puckx,pucky) <= 90) {
-    vx = (puckx - x2)*(dist(x2,y2, prevxb,prevyb)/50+0.02);
-    vy = (pucky - y2)*(dist(x2,y2, prevxb,prevyb)/50+0.02);
+  if(dist(x2,y2, puckx,pucky) <= ps*60+30) {
+    vx = (puckx - x2)*(dist(x2,y2, prevxb,prevyb)/(50*ps/speed)+0.02*speed);
+    vy = (pucky - y2)*(dist(x2,y2, prevxb,prevyb)/(50*ps/speed)+0.02*speed);
     if(dist(x2,y2, prevxb,prevyb) > 0) {
       hitshot.stop();
       hitboard.stop();
@@ -180,15 +182,15 @@ void game() {
   
   
   
-  if(x1 <= 165) x1 = 165;
-  if(x1 >= width/2-60) x1 = width/2-60;
-  if(y1 <= 115) y1 = 115;
-  if(y1 >= height-115) y1 = height-115;
+  if(x1 <= ps*60+105) x1 = ps*60+105;
+  if(x1 >= width/2-60*ps) x1 = width/2-60*ps;
+  if(y1 <= ps*60+55) y1 = ps*60+55;
+  if(y1 >= height-ps*60-55) y1 = height-ps*60-55;
   
-  if(x2 <= width/2+60) x2 = width/2+60;
-  if(x2 >= width-165) x2 = width-165;
-  if(y2 <= 115) y2 = 115;
-  if(y2 >= height-115) y2 = height-115;
+  if(x2 <= width/2+ps*60) x2 = width/2+ps*60;
+  if(x2 >= width-ps*60-105) x2 = width-ps*60-105;
+  if(y2 <= ps*60+55) y2 = ps*60+55;
+  if(y2 >= height-ps*60-55) y2 = height-ps*60-55;
   
   
   //exit
@@ -259,6 +261,6 @@ void keyReleased() {
   if(keyCode == DOWN) sKey2 = false;
 }
 
-void mousePressed() {
+void gamePressed() {
   isheld = true;
 }

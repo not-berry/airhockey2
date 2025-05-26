@@ -62,3 +62,7 @@ void introClicks() {
     mode = OPTIONS;
   }
 }
+
+void introPressed() {
+  
+}
