@@ -61,6 +61,23 @@ void options() {
   line(100,150, sliderX2,150);
   noStroke();
   circle(sliderX2, 150, 50);
+  
+  //brightness slider
+  textSize(20);
+  if(change3 && mouseX > 100 && mouseX < 550) sliderX3 = mouseX;
+  brightness = map(sliderX3, 100,550, 255,0);
+  fill(black);
+  text("bright:", 40,247);
+  stroke(white);
+  line(100,250, 550,250);
+  stroke(black);
+  fill(black);
+  line(100,250, sliderX3,250);
+  noStroke();
+  circle(sliderX3, 250, 50);
+  
+  fill(black, brightness);
+  rect(-100,-100, width+200,height+200);
 }
 
 void optionsClicks() {
@@ -69,10 +86,11 @@ void optionsClicks() {
     if(dist(colourX[i]+width-170,colourY[i]+100, mouseX,mouseY) < 55 && i < 5) red = colour[i];
     if(dist(colourX[i]+width-170,colourY[i]+100, mouseX,mouseY) < 55 && i >= 5) blue = colour[i];
   }
-  change1 = change2 = false;
+  change1 = change2 = change3 = false;
 }
 
 void optionsPressed() {
   if (mouseX > 75 && mouseX < 575 && mouseY > 0 && mouseY < 100) change1 = true;
   if (mouseX > 75 && mouseX < 575 && mouseY > 100 && mouseY < 200) change2 = true;
+  if (mouseX > 75 && mouseX < 575 && mouseY > 200 && mouseY < 300) change3 = true;
 }

@@ -51,6 +51,8 @@ void intro() {
   circle(0,0,40);
   popMatrix();
   
+  fill(black, brightness);
+  rect(-100,-100, width+200,height+200);
 }
 
 void introClicks() {

@@ -34,6 +34,9 @@ boolean change1 = false;
 float speed = 0.8;
 float sliderX2 = 235;
 boolean change2 = false;
+float brightness = 0;
+float sliderX3 = 550;
+boolean change3 = false;
 
 //KEY VARIABLES
 boolean aKey, dKey, wKey, sKey;

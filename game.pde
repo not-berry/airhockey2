@@ -212,6 +212,9 @@ void game() {
     playerHit[0].act();
   }
   if(held >= 360) held = 360;
+  
+  fill(black, brightness);
+  rect(-100,-100, width+200,height+200);
 }
 
 void gameClicks() {

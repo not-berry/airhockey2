@@ -18,6 +18,9 @@ void gameover() {
   titletext(70);
   text("PLAY AGAIN", 0,50);
   popMatrix();
+  
+  fill(black, brightness);
+  rect(-100,-100, width+200,height+200);
 }
 
 void gameoverClicks() {
