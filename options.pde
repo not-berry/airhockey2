@@ -35,7 +35,8 @@ void options() {
   
   //size slider
   textSize(20);
-  if(change1 && mouseX > 100 && mouseX < 550) sliderX1 = mouseX;
+  if(change1) sliderX1 = mouseX;
+  sliderX1 = constrain(sliderX1,100,550);
   ps = map(sliderX1, 100,550, 0.5,1.5);
   fill(black);
   text("size:", 30,47);
@@ -50,7 +51,8 @@ void options() {
   
   //puck speed slider
   textSize(20);
-  if(change2 && mouseX > 100 && mouseX < 550) sliderX2 = mouseX;
+  if(change2) sliderX2 = mouseX;
+  sliderX2 = constrain(sliderX2,100,550);
   speed = map(sliderX2, 100,550, 0.5,1.5);
   fill(black);
   text("speed:", 40,147);
@@ -64,7 +66,8 @@ void options() {
   
   //brightness slider
   textSize(20);
-  if(change3 && mouseX > 100 && mouseX < 550) sliderX3 = mouseX;
+  if(change3) sliderX3 = mouseX;
+  sliderX3 = constrain(sliderX3,100,550);
   brightness = map(sliderX3, 100,550, 255,0);
   fill(black);
   text("bright:", 40,247);
@@ -76,6 +79,21 @@ void options() {
   noStroke();
   circle(sliderX3, 250, 50);
   
+  //volume slider
+  textSize(20);
+  if(change4) sliderX4 = mouseX;
+  sliderX4 = constrain(sliderX4,100,550);
+  vol = map(sliderX4, 100,550, 0,1);
+  fill(black);
+  text("vol:", 30,347);
+  stroke(white);
+  line(100,350, 550,350);
+  stroke(black);
+  fill(black);
+  line(100,350, sliderX4,350);
+  noStroke();
+  circle(sliderX4, 350, 50);
+  
   fill(black, brightness);
   rect(-100,-100, width+200,height+200);
 }
@@ -86,11 +104,12 @@ void optionsClicks() {
     if(dist(colourX[i]+width-170,colourY[i]+100, mouseX,mouseY) < 55 && i < 5) red = colour[i];
     if(dist(colourX[i]+width-170,colourY[i]+100, mouseX,mouseY) < 55 && i >= 5) blue = colour[i];
   }
-  change1 = change2 = change3 = false;
+  change1 = change2 = change3 = change4 = false;
 }
 
 void optionsPressed() {
   if (mouseX > 75 && mouseX < 575 && mouseY > 0 && mouseY < 100) change1 = true;
   if (mouseX > 75 && mouseX < 575 && mouseY > 100 && mouseY < 200) change2 = true;
   if (mouseX > 75 && mouseX < 575 && mouseY > 200 && mouseY < 300) change3 = true;
+  if (mouseX > 75 && mouseX < 575 && mouseY > 300 && mouseY < 400) change4 = true;
 }

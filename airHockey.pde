@@ -37,6 +37,9 @@ boolean change2 = false;
 float brightness = 0;
 float sliderX3 = 550;
 boolean change3 = false;
+float vol = 0.1;
+float sliderX4 = 145;
+boolean change4 = false;
 
 //KEY VARIABLES
 boolean aKey, dKey, wKey, sKey;
@@ -60,12 +63,14 @@ color[] colour;
 SoundFile hitshot;
 SoundFile hitboard;
 SoundFile grug;
+Sound s;
 
 //class call
 hit[] playerHit;
 int numhits = 0;
 
 void setup() {
+  s = new Sound(this);
   hitshot = new SoundFile(this, "mixkit-arrow-shot-through-air-2771.wav");
   hitboard = new SoundFile(this, "mixkit-game-gun-shot-1662-[AudioTrimmer.com].mp3");
   grug = new SoundFile(this, "grug-[AudioTrimmer.com].mp3");
@@ -119,7 +124,7 @@ void setup() {
     }
   }
   
-  //grug.play();
+  grug.play();
   
   
   //puck side
@@ -140,5 +145,6 @@ void draw() {
   } else {
     println("Error: Mode = " + mode);
   } 
+  s.volume(vol);
 
 }
